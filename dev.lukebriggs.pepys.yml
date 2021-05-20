@@ -17,17 +17,17 @@ finish-args:
   - --device=dri
   - --filesystem=home
   - --share=network
-  #- --env=PATH=/usr/bin:/app/bin:/app/texlive/bin:/app/texlive/bin/x86_64-linux:/app/texlive/bin/aarch64-linux
+  - --env=PATH=/usr/bin:/app/bin:/app/texlive/bin:/app/texlive/bin/x86_64-linux:/app/texlive/bin/aarch64-linux
 modules:
   - name: src
     buildsystem: simple
     build-commands:
       - ls
       - mkdir -p /app/src
-      - cp  -r ./main /app/src
+      - cp  -r ./src/main /app/src
     sources:
-      - type: archive
-        path: https://github.com/LukeBriggsDev/Pepys/archive/refs/heads/master.zip
+      - type: git
+        url: https://github.com/LukeBriggsDev/Pepys.git
 
   - python3-requirements.json
 
@@ -72,7 +72,9 @@ modules:
   - name: kerberos
     sources:
     - type: archive
-      path: /home/luke/Documents/Projects/Pepys/.flatpak_sources/kerb.tar.xz
+      url: https://github.com/LukeBriggsDev/Pepys/raw/master/.flatpak_sources/kerb.tar.xz
+      sha256: c8bde90b79012107291f0d2ae9aed40e668259c3b294634dfe2d5da8568d24d1
+
 
   - name: wkhtmltopdf
     buildsystem: simple
