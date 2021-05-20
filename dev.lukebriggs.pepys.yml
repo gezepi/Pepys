@@ -8,7 +8,7 @@ add-extensions:
     subdirectories: true
     autodelete: true
     version: '20.08'
-command: test.sh
+command: runner.sh
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -86,7 +86,8 @@ modules:
         url: https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox-0.12.6-1.centos8.x86_64.rpm
         sha256: 5cc267d54fe3f144729f31432a165e028b689583c53cfee0a01d52644ab280d9
 
-  - name: test
+  - name: runner.sh
     buildsystem: simple
     build-commands:
-      - echo Hello World > /app/bin/test.sh
+      - echo "python3 /app/src/main/python/main.py" > /app/bin/runner.sh
+      - chmod +x /app/bin/runner.sh
