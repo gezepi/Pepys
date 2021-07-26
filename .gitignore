@@ -1,2 +1,4 @@
 /build/
 /dist/
+/_journals/
+*__pycache__*
